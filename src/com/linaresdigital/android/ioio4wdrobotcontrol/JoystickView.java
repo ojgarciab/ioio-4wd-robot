@@ -74,13 +74,14 @@ public class JoystickView extends View {
 			break;
 		case MotionEvent.ACTION_CANCEL:
 		case MotionEvent.ACTION_UP:
-			/* Center joystick, remove touch ID and force redraw */
-			mPosX = mPosY = 0;
-			X = Y = 0.0f;
-			mTouchIndex = -1;
-			invalidate();
+			/* End of movement, reset joystick position to center */
+			resetJoystick();
 			break;
 		case MotionEvent.ACTION_POINTER_UP:
+			/* If touch ID is not last (active) one, ignore it */
+			if (mTouchIndex == ((action & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT)) {
+				resetJoystick();
+			}
 			break;
 		}
 		return false;
@@ -93,4 +94,11 @@ public class JoystickView extends View {
 		return true;
 	}
 
+	private void resetJoystick() {
+		/* Center joystick, remove touch ID and force redraw */
+		mPosX = mPosY = 0;
+		X = Y = 0.0f;
+		mTouchIndex = -1;
+		invalidate();
+	}
 }
