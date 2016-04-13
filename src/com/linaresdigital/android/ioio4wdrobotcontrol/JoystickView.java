@@ -14,7 +14,7 @@ public class JoystickView extends View {
 	private Paint mPaintStick;
 	private Paint mPaintHandle;
 	/* Size, center, position, ect */
-	private int mSize, mCenterX, mCenterY, mPosX, mPosY;
+	private int mSize, mCenterX, mCenterY, mPosX, mPosY, mTouchIndex = -1;
 	public float X, Y;
 
 	public JoystickView(Context context) {
@@ -56,7 +56,8 @@ public class JoystickView extends View {
 		final int action = ev.getAction();
 		switch (action & MotionEvent.ACTION_MASK) {
 		case MotionEvent.ACTION_DOWN:
-			break;
+			mTouchIndex = ev.getPointerId(0);
+			return updateJoystick(ev);
 		case MotionEvent.ACTION_MOVE:
 			break;
 		case MotionEvent.ACTION_POINTER_DOWN:
@@ -69,4 +70,12 @@ public class JoystickView extends View {
 		}
 		return false;
 	}
+
+	private boolean updateJoystick(MotionEvent ev) {
+		if (mTouchIndex < 0) {
+			return false;
+		}
+		return true;
+	}
+
 }
