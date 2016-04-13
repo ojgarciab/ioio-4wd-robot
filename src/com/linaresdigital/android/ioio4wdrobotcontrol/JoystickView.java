@@ -74,6 +74,11 @@ public class JoystickView extends View {
 			break;
 		case MotionEvent.ACTION_CANCEL:
 		case MotionEvent.ACTION_UP:
+			/* Center joystick, remove touch ID and force redraw */
+			mPosX = mPosY = 0;
+			X = Y = 0.0f;
+			mTouchIndex = -1;
+			invalidate();
 			break;
 		case MotionEvent.ACTION_POINTER_UP:
 			break;
