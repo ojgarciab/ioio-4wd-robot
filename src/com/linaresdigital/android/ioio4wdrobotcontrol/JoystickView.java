@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.View;
 
 public class JoystickView extends View {
@@ -51,4 +52,21 @@ public class JoystickView extends View {
 		canvas.restore();
 	}	
 
+	public boolean onTouchEvent(MotionEvent ev) {
+		final int action = ev.getAction();
+		switch (action & MotionEvent.ACTION_MASK) {
+		case MotionEvent.ACTION_DOWN:
+			break;
+		case MotionEvent.ACTION_MOVE:
+			break;
+		case MotionEvent.ACTION_POINTER_DOWN:
+			break;
+		case MotionEvent.ACTION_CANCEL:
+		case MotionEvent.ACTION_UP:
+			break;
+		case MotionEvent.ACTION_POINTER_UP:
+			break;
+		}
+		return false;
+	}
 }
