@@ -56,9 +56,14 @@ public class JoystickView extends View {
 		final int action = ev.getAction();
 		switch (action & MotionEvent.ACTION_MASK) {
 		case MotionEvent.ACTION_DOWN:
+			/* First pointer down: get pointer ID and use it */
 			mTouchIndex = ev.getPointerId(0);
 			return updateJoystick(ev);
 		case MotionEvent.ACTION_MOVE:
+			/* Ignore older pointer ID, use only last one */
+			if (mTouchIndex == ev.getPointerId(0)) {
+				return updateJoystick(ev);
+			}
 			break;
 		case MotionEvent.ACTION_POINTER_DOWN:
 			break;
