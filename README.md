@@ -27,3 +27,12 @@ You can buy IOIO here:
 * China (Standar and OTG):
  * http://www.dx.com/s/ioio (from $23.99).
  * http://es.aliexpress.com/wholesale?SearchText=IOIO&SortType=price_asc&needQuery=n&groupsort=1 (from $20.60).
+
+### 4WD Robot
+There is lots of four-wheeled out there.
+
+Mine is this:
+
+http://www.dx.com/p/152992
+
+I tried some H-bridge drivers.
