@@ -82,6 +82,7 @@ public class JoystickView extends View {
 			if (mTouchIndex == ((action & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT)) {
 				resetJoystick();
 			}
+			performClick();
 			break;
 		}
 		return false;
@@ -136,4 +137,10 @@ public class JoystickView extends View {
 		mPosX = mPosY = 0;
 		mPaintStick.setStrokeWidth(mSize * 0.15f);
 	}
+
+    @Override
+    public boolean performClick() {
+        super.performClick();
+        return true;
+    }
 }
