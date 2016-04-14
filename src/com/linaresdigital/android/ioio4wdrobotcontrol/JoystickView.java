@@ -14,7 +14,7 @@ public class JoystickView extends View {
 	private Paint mPaintStick;
 	private Paint mPaintHandle;
 	/* Size, center, position, ect */
-	private int mSize, mCenterX, mCenterY, mPosX, mPosY, mTouchIndex = -1;
+	private int mSize, mCenterX, mCenterY, mPosX, mPosY, mRadioMax, mTouchIndex = -1;
 	public float X, Y;
 
 	public JoystickView(Context context) {
@@ -91,6 +91,23 @@ public class JoystickView extends View {
 		if (mTouchIndex < 0) {
 			return false;
 		}
+		try {
+			int pointerIndex = ev.findPointerIndex(mTouchIndex);
+			float x = ev.getX(pointerIndex);
+			float y = ev.getY(pointerIndex);
+			mPosX = (int) (x - mCenterX);
+			mPosY = (int) (y - mCenterY);
+			double radius = Math.sqrt(mPosX * mPosX + mPosY * mPosY);
+			if (radius > mRadioMax) {
+				mPosX /= radius / mRadioMax;
+				mPosY /= radius / mRadioMax;
+			}
+			X = (float)mPosX / (float)mRadioMax;
+			Y = -(float)mPosY / (float)mRadioMax;
+			invalidate();
+		} catch (Exception e) {
+			return false;
+		}
 		return true;
 	}
 
@@ -107,5 +124,16 @@ public class JoystickView extends View {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		int size = Math.min(widthMeasureSpec, heightMeasureSpec);
 		setMeasuredDimension(size, size);
+	}
+
+	@Override
+	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+		super.onLayout(changed, left, top, right, bottom);
+		mSize = Math.min(getMeasuredWidth(), getMeasuredHeight());
+		mRadioMax = Math.round(mSize * 0.29f);
+		mCenterX = getMeasuredWidth() / 2;
+		mCenterY = getMeasuredHeight() / 2;
+		mPosX = mPosY = 0;
+		mPaintStick.setStrokeWidth(mSize * 0.15f);
 	}
 }
