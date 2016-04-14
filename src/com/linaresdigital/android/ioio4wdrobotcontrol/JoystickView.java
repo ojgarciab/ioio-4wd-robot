@@ -101,4 +101,11 @@ public class JoystickView extends View {
 		mTouchIndex = -1;
 		invalidate();
 	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		int size = Math.min(widthMeasureSpec, heightMeasureSpec);
+		setMeasuredDimension(size, size);
+	}
 }
