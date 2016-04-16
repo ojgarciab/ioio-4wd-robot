@@ -166,4 +166,12 @@ public class JoystickView extends View {
         super.performClick();
         return true;
     }
+
+	public void setMovementLock(int value) {
+		mMovementLock = value;
+	}
+
+	public int getMovementLock() {
+		return mMovementLock;
+	}
 }
