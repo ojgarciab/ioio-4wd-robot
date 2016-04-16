@@ -9,13 +9,17 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class JoystickView extends View {
+	/* Movement lock */
+	public final static int LOCK_HORIZONTALLY = 1;
+	public final static int LOCK_VERTICALLY = 2;
 	/* Draw styles by order */
 	private Paint mPaintBaseOuter;
 	private Paint mPaintBaseInner;
 	private Paint mPaintStick;
 	private Paint mPaintHandle;
 	/* Size, center, position, ect */
-	private int mSize, mCenterX, mCenterY, mPosX, mPosY, mRadioMax, mTouchIndex = -1;
+	private int mSize, mCenterX, mCenterY, mPosX, mPosY, mRadioMax;
+	private int mTouchIndex = -1, mMovementLock = LOCK_HORIZONTALLY | LOCK_VERTICALLY;
 	public float X, Y;
 
 	public JoystickView(Context context) {
@@ -107,8 +111,16 @@ public class JoystickView extends View {
 			int pointerIndex = ev.findPointerIndex(mTouchIndex);
 			float x = ev.getX(pointerIndex);
 			float y = ev.getY(pointerIndex);
-			mPosX = (int) (x - mCenterX);
-			mPosY = (int) (y - mCenterY);
+			if ((mMovementLock & LOCK_HORIZONTALLY) == 0) {
+				mPosX = (int) (x - mCenterX);
+			} else {
+				mPosX = 0;
+			}
+			if ((mMovementLock & LOCK_VERTICALLY) == 0) {
+				mPosY = (int) (y - mCenterY);
+			} else {
+				mPosY = 0;
+			}
 			double radius = Math.sqrt(mPosX * mPosX + mPosY * mPosY);
 			if (radius > mRadioMax) {
 				mPosX /= radius / mRadioMax;
