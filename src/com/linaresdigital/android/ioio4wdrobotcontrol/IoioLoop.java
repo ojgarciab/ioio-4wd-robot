@@ -8,6 +8,7 @@ import ioio.lib.util.BaseIOIOLooper;
 public class IoioLoop extends BaseIOIOLooper {
 	private PwmOutput[] pwmMotors;
 	private DigitalOutput activityLed;
+	private int blinkCount = 0;
 
 	@Override
 	protected void setup() throws ConnectionLostException {
@@ -28,4 +29,10 @@ public class IoioLoop extends BaseIOIOLooper {
 		activityLed.close();
 	}
 
+	@Override
+	public void loop() throws ConnectionLostException {
+		blinkCount = ++blinkCount % 10;
+		// Turn off the LED 2 cycles and turn it on 8 cycles
+		activityLed.write(blinkCount > 2);
+	}
 }
