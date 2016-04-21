@@ -2,15 +2,21 @@ package com.linaresdigital.android.ioio4wdrobotcontrol;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	public JoystickView[] joySticks;
 	public boolean landscape = false, portrait = false;
+	public TextView tvStatus;
+	public static Handler handler;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		handler = new Handler();
 		setContentView(R.layout.activity_main);
+		tvStatus = (TextView) findViewById(R.id.txtStatus);
 		joySticks[0] = (JoystickView) findViewById(R.id.joystickViewT);
 		joySticks[1] = (JoystickView) findViewById(R.id.joystickViewL);
 		joySticks[2] = (JoystickView) findViewById(R.id.joystickViewR);
@@ -20,5 +26,14 @@ public class MainActivity extends Activity {
 		if ((joySticks[1] != null) && (joySticks[2] != null)) {
 			portrait = false;
 		}
+	}
+
+	public void changeStatus(final int estado) {
+		handler.post(new Runnable() {
+			@Override
+			public void run() {
+				tvStatus.setText(estado);
+			}
+		});
 	}
 }
