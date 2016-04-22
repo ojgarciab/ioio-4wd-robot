@@ -6,9 +6,9 @@ import android.os.Handler;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	public JoystickView[] joySticks;
+	private JoystickView[] joySticks;
+	private static TextView tvStatus;
 	public boolean landscape = false, portrait = false;
-	public TextView tvStatus;
 	public static Handler handler;
 
 	@Override
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	public void changeStatus(final int estado) {
+	public static void changeStatus(final int estado) {
 		handler.post(new Runnable() {
 			@Override
 			public void run() {

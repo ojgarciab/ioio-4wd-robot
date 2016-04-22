@@ -12,6 +12,7 @@ public class IoioLoop extends BaseIOIOLooper {
 
 	@Override
 	protected void setup() throws ConnectionLostException {
+		MainActivity.changeStatus(R.string.status_connected);
 		pwmMotors = new PwmOutput[4];
 		activityLed = ioio_.openDigitalOutput(0, true);
 		pwmMotors[0] = ioio_.openPwmOutput(10, 500);
@@ -22,6 +23,7 @@ public class IoioLoop extends BaseIOIOLooper {
 
 	@Override
 	public void disconnected() {
+		MainActivity.changeStatus(R.string.status_waiting);
 		pwmMotors[0].close();
 		pwmMotors[1].close();
 		pwmMotors[2].close();
