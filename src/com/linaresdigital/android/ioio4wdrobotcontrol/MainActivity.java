@@ -36,4 +36,9 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
+
+	/*
+	 * Intent i = new Intent(this, PreferencesActivity.class);
+	 * startActivity(i);
+	 */
 }
