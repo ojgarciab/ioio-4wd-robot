@@ -4,5 +4,6 @@
     <string name="app_name">IOIO 4WD Robot Control</string>
     <string name="status_waiting">Waiting IOIO</string>
     <string name="status_connected">Connected to IOIO</string>
+    <string name="preferences">Preferences</string>
     
 </resources>
