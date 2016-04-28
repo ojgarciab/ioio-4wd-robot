@@ -35,4 +35,6 @@ Mine is this:
 
 http://www.dx.com/p/152992
 
-I tried some H-bridge drivers.
+I tried some H-bridge drivers:
+* First attempt: http://www.dx.com/p/215795
+* Current attempt: http://www.dx.com/p/408436
