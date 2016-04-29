@@ -38,3 +38,13 @@ http://www.dx.com/p/152992
 I tried some H-bridge drivers:
 * First attempt: http://www.dx.com/p/215795
 * Current attempt: http://www.dx.com/p/408436
+
+Technical specifications:
+* HG7881:
+ * Input voltage: 2.5-12v
+ * Maximum output current: 800 mA
+ * PWM control: 2 control lines for each channel, one for PWM (speed) and other for direction.
+* L298N:
+ * Input voltage: 7-35v
+ * Maximum output current: 2A
+ * PWM control: 2 control lines for each channel for direction and another one for PWM (speed).
