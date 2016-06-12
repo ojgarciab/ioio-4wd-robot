@@ -49,6 +49,9 @@ Technical specifications:
  * Input voltage: 2.7-5.5v for VCC (logic), 15v max for VM (motor voltage).
  * Maximum output current: 1200 mA (3200 mA single pulse peak)
  * PWM control: 2 control lines for each channel for direction and another one for PWM (speed).
+ * Notes:
+    * This driver DOES NOT have flyback diodes because uses MOSFETs instead transistors, but I recommend to add them.
+    * Because it is CMOS based technology, it is necessary to handle it ensuring that the environment is protected against electrostatic discharge.
 * L298N:
  * Input voltage: 7-35v
  * Maximum output current: 2000 mA
